@@ -26,7 +26,7 @@ Then run 'pipeline.m' to run spectral-stitching algorithm on generated adjacent 
 
 Finally, run measure_performance_across_subsamples.R to get the metrics switch error rate and unphased SNPs. Run N50.py to get N50.
 
-If you have a a adjacent matrix (or contact map) in the same format as 'contactmap_demo.csv', You can run \
+If you have a a adjacent matrix (or contact map) in the same format as 'contactmap_demo.csv', You can run 
 
 ```
 phased_seq = Spectral_stitching('contactmap_demo.csv');
@@ -43,6 +43,7 @@ SNP pos x1 (space) SNP Index y1 (space) \# of reads that indicate x1 and y1 belo
 SNP pos x2 (space) SNP Index y2 (space) \# of reads that indicate x2 and y2 belong to one community
 
 For example, if you have 4 reads, the first read indicates SNP1 and SNP2 are in the same community. The second read indicates SNP1 and SNP2 are in different community. The third read indicate SNP1 and SNP3 are in the same community. The fourth read indicates SNP1 and SNP2 are in different community. Then the contact map should be:
+
 3 3 3
 
 1 1 -1     (The first read +1, the second read -1, the fourth read -1.)
