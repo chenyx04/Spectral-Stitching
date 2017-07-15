@@ -2,9 +2,9 @@
 
 Spectral-stitching algorithm for solving haplotype phasing problem. It implements the algorithm proposed in:
 
-```
+
 Chen, Y., Kamath, G., Suh, C., & Tse, D. (2016, June). Community recovery in graphs with locality. In International Conference on Machine Learning (pp. 689-698).
-```
+
 
 The current version is implemented in python, MATLAB and R for simple evaluation. The subsampling and preprocess step is in python. The main program is in MATLAB. And evaluation is in R. We will release a finished and formal pure python code soon. We apologize for the potential inconvenience for running the current version.
 
@@ -26,21 +26,27 @@ Then run 'pipeline.m' to run spectral-stitching algorithm on generated adjacent 
 
 Finally, run measure_performance_across_subsamples.R to get the metrics switch error rate and unphased SNPs. Run N50.py to get N50.
 
-If you have a a adjacent matrix (or contact map) in the same format as 'contactmap_demo.csv', You can run 
-'''
+If you have a a adjacent matrix (or contact map) in the same format as 'contactmap_demo.csv', You can run \
+
+```
 phased_seq = Spectral_stitching('contactmap_demo.csv');
-'''
+```
+
  to get the phased sequence.
 
 The format of contact map file should be:
 
 \# of rows (space) \# of columns (space) Number of linkages
+
 SNP pos x1 (space) SNP Index y1 (space) \# of reads that indicate x1 and y1 belong to one community (If one read indicates x1 and y1 are all 0 or all 1, then this adds 1, else this minuses 1)
+
 SNP pos x2 (space) SNP Index y2 (space) \# of reads that indicate x2 and y2 belong to one community
 
 For example, if you have 4 reads, the first read indicates SNP1 and SNP2 are in the same community. The second read indicates SNP1 and SNP2 are in different community. The third read indicate SNP1 and SNP3 are in the same community. The fourth read indicates SNP1 and SNP2 are in different community. Then the contact map should be:
 3 3 3
+
 1 1 -1     (The first read +1, the second read -1, the fourth read -1.)
+
 1 3 1      (The third read +1.)
 
 
