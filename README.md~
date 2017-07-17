@@ -63,12 +63,12 @@ python spectral_stitching -h
 '''
 The demo script for running on refhap reads file is 
 '''
-python spectral-stitching.py -r refhapreads_demo.txt  -o out.phased
+python spectral-stitching.py -r chr22.matrix.SORTED  -o chr22out.phased
 '''
 
 For running on contact map file, type
 '''
-python spectral-stitching.py -c contactmap_demo.csv  -o out.phased
+python spectral-stitching.py -r chr22.matrix.SORTED  -o chr22out.phased
 '''
 
 If you want a whole continuous snp output instead of blocked one. Try parameter -nb
