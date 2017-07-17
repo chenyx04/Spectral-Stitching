@@ -58,18 +58,18 @@ For example, if you have 4 reads, the first read indicates SNP1 and SNP2 are in 
 We've uploaded a preliminary python version for spectral stitching algorithm. It takes in either the refhap reads file or contact map as defined above.
 
 We provide two examplanary dataset, run the following script to get help
-'''
+```
 python spectral_stitching -h
-'''
+```
 The demo script for running on refhap reads file is 
-'''
+```
 python spectral-stitching.py -r refhapreads_demo.txt  -o out.phased
-'''
+```
 
 For running on contact map file, type
-'''
+```
 python spectral-stitching.py -c contactmap_demo.csv  -o out.phased
-'''
+```
 
 If you want a whole continuous snp output instead of blocked one. Try parameter -nb
 
