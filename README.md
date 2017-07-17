@@ -26,7 +26,7 @@ Yuxin Chen (yuxin.chen@princeton.edu)
 ## Usage of Python Main Program
 
 
-We've uploaded a preliminary python version for spectral stitching algorithm. It takes in either the refhap reads file or contact map file. And the output can be either in blocks or a continuous SNP sequence.
+We`ve uploaded a preliminary python version for spectral stitching algorithm. It takes in either the refhap reads file or contact map file. And the output can be either in blocks or a continuous SNP sequence.
 
 ### Demo
 
@@ -51,7 +51,7 @@ If you want a whole continuous snp output instead of blocked one. Try parameter 
 ### Input File Format 
 
 
-The refhap reads format is the same as described in the paper by Duitama et al. (2010) and the documentation of RefHap algorithm. A demo file is provided in 'refhapreads_demo.txt'.
+The refhap reads format is the same as described in the paper by Duitama et al. (2010) and the documentation of RefHap algorithm. A demo file is provided in `refhapreads_demo.txt`.
 
 The format of contact map file should be:
 
@@ -69,7 +69,7 @@ For example, if you have 4 reads, the first read indicates SNP1 and SNP2 are in 
 
 1 3 1      (The third read +1.)
 
-A demo contactmap file is provided in 'contactmap_demo.txt'.
+A demo contactmap file is provided in `contactmap_demo.txt`.
 
 
 ### Output File Format
@@ -84,18 +84,18 @@ When we read in a refhap reads file, we will get the contactmap from all the rea
 
 ## Usage of evaluation package
 
-In folder 'evaluation/', we provide a demo for running on chromosome 20 of NA12878 WGS data.
+In folder `evaluation\`, we provide a demo for running on chromosome 20 of NA12878 WGS data.
 
-First run 'subsample&preprocess.py' for subsampling the coverage and generate adjacent matrix file required for main program.
+First run `subsample&preprocess.py` for subsampling the coverage and generate adjacent matrix file required for main program.
 
-Then run 'pipeline.m' to run spectral-stitching algorithm on generated adjacent matrix. 
+Then run `pipeline.m` to run spectral-stitching algorithm on generated adjacent matrix. 
 
-Finally, run 'measure_performance_across_subsamples.R' to get the metrics switch error rate and unphased SNPs. Run 'N50.py' to get N50.
+Finally, run `measure_performance_across_subsamples.R` to get the metrics switch error rate and unphased SNPs. Run `N50.py` to get N50.
 
-If you have a a adjacent matrix (or contact map) in the same format as 'contactmap_demo.csv', You can run in MATLAB
+If you have a a adjacent matrix (or contact map) in the same format as `contactmap_demo.csv`, You can run in MATLAB
 
 ```
-phased_seq = Spectral_stitching('contactmap_demo.csv');
+phased_seq = Spectral_stitching(`contactmap_demo.csv`);
 ```
 
 to get the phased sequence.
