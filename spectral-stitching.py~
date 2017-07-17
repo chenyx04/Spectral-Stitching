@@ -79,7 +79,7 @@ contact_map_t = contact_map.transpose(copy=True)
 contact_map = contact_map + contact_map_t
 n_components, labels = connected_components(contact_map, directed=False, return_labels=True)
 phased_snp = np.zeros((num_snp,))
-print(len(phased_snp))
+
 out_file = open(args.outphase, "w")
 out_file.write("")
 out_file.close()
@@ -152,8 +152,6 @@ for i in range(n_components):
                 elif met < 0:
                     phased_snp[pos[tt]] = -1
 
-print(len(phased_snp))
-
 spectral_time = time.clock()
 print("Spectral-Stitching algorithm finished! Elapsed time = " + str(spectral_time - preprocess_time) +'s' )
 if args.noblock == True:
@@ -172,11 +170,11 @@ else:
         # Step1. Spectral
         pos = idx_dic[labels==i]
         if len(pos) == 1: continue
-        out_file.write("BLOCK: offset: %d len: %d\n" % (pos[0]+1, len(pos)))
-        for j in range(len(pos)):
+        out_file.write("BLOCK: offset: %d len: %d\n" % (pos[0], len(pos)))
+        for j in range(1,len(pos)+1):
             if phased_snp[pos[j]] == 0:
-                out_file.write("%d \t -\n" % (pos[j]+1))
+                out_file.write("%d \t -\n" % (pos[j]))
             else:
-                out_file.write("%d \t %d\n" % (pos[j]+1, (1+phased_snp[pos[j]])/2))
+                out_file.write("%d \t %d\n" % (pos[j], phased_snp[j]))
         out_file.write("********\n")
     out_file.close()

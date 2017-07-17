@@ -98,7 +98,7 @@ If you have a a adjacent matrix (or contact map) in the same format as 'contactm
 phased_seq = Spectral_stitching('contactmap_demo.csv');
 ```
 
-to get the phased sequence.
+ to get the phased sequence.
 
 
 
