@@ -189,13 +189,32 @@ for i in range(n_components):
                 pp = pp[abs(pp-tt)<(refine_iter+1)*W/2]
                 info = elements[tt,:][:,pp].toarray().flatten()
                 known_spec = phased_snp[pos[pp]].flatten()
-                met = int(sum(info*known_spec) > 0)
+                met = int(sum(info*known_spec))
                 # Remain 0 if undetermined
                 if met > 0:
                     phased_snp[pos[tt]] = 1
                 elif met < 0:
                     phased_snp[pos[tt]] = -1
 
+        ## Some immature thinking on long range switch error correction. Performance is not so good
+        # for refine_iter in range(3):
+        #     for tt, pos_tt in enumerate(pos):
+        #         pp = elements[tt,:].nonzero()[1]
+        #         pp = pp[abs(pp-tt)<(refine_iter+1)*W/2]
+        #         left = pp[pp<tt]
+        #         right = pp[pp>tt]
+        #         info_left = elements[tt,:][:,left].toarray().flatten()
+        #         known_spec_left = phased_snp[pos[left]].flatten()
+        #         info_right = elements[tt,:][:,right].toarray().flatten()
+        #         known_spec_right = phased_snp[pos[right]].flatten()
+                
+        #         met_left = int(sum(info_left*known_spec_left))
+        #         met_right = int(sum(info_right*known_spec_right))
+        #         # Remain 0 if undetermined
+        #         if met_left > 5 and met_right < -5:
+        #             phased_snp[pos[tt]] = 1
+        #         elif met_left < -5 and met_right > 5:
+        #             phased_snp[pos[tt]] = -1
 
 spectral_time = time.clock()
 print("Spectral-Stitching algorithm finished! Elapsed time = " + str(spectral_time - preprocess_time) +'s' )
