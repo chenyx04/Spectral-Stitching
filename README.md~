@@ -81,8 +81,6 @@ We provide two formats of output. By default, the output is in blocks. Each bloc
 When we read in a refhap reads file, we will get the contactmap from all the reads and the quality scores. Then the blocks are determined by finding all the connected components from the contact map. Then spectral-stitching algorithm runs on each block seperately. In the future release we will add parallel property for our program.
 
 
-Note: In the new implementation of python version, we use the same definition of block as refhap and probhap etc, which is not identical to 10X definition, the one we use for evaluation package. For this version we are showing less blocks. The comparison of two different version is shown in `evaluation\new_implemention_comparison.png`.
-
 
 ## Usage of evaluation package
 
