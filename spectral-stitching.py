@@ -7,6 +7,7 @@ from math import exp, log
 from lib.spectral import spectral
 import time
 
+##########              Argument Setting                 ####################
 #############################################################################
 
 parser = argparse.ArgumentParser(description="Spectral-stitching, haplotype assembly using community detection in graph with locality")
@@ -17,20 +18,24 @@ parser.add_argument('-o','--outphase', help='output file path', required=True)
 parser.add_argument('-nb','--noblock', help='simply output all snps instead of blocks', action='store_true')
 args = parser.parse_args()
 
+
+
+##########                Parsing Input                  ####################
 #############################################################################
+
 start_time = time.clock()
-# figure out the number of positions to phase:
 if args.reads is not None:
-       
+    # Transfer refhap reads to contact map file
     with open(args.reads) as f:
         num_reads, num_snp = (int(x) for x in f.readline().split())
-        data_start, data_end = 0, num_snp - 1
+        # Build up contact map from given reads
         contact_map = sp.lil_matrix((num_snp,num_snp),dtype=np.float)
+        contact_map_cnt = sp.lil_matrix((num_snp,num_snp),dtype=np.int)
         print ("Parsing Refhap file...")
         for i,line in enumerate(f):
             fields = line.strip().split()
             if len(fields) == 2: continue
-            # extract data for the read:
+            # extract data from the read:
             covered_positions = list()
             alleles = dict()
             qscores = dict()
@@ -38,29 +43,45 @@ if args.reads is not None:
             qscore_list = list(fields[-1][::-1])
             num_pieces = int(fields[0])
 
+            # Iterate over contiguous SNP groups in a single read
             for k in xrange(num_pieces):
                 start = int(fields[2+2*k])-1
                 allele_list = fields[2+2*k+1]
 
+                # Iterate over each SNP in a contiguous SNP grouop
                 for j, allele in zip(xrange(start,start+len(allele_list)), allele_list):
                     alleles[j] = [int(allele)]
                     x = qscore_list.pop()
                     qscores[j] = float(ord(x)-33)
                     covered_positions.append(j)
 
+            # Ignore reads that only cover a single SNP
             if len(covered_positions) == 0:
                 continue
 
+            # Get probability of two SNP being the same community
+            # P(same community) = \sum_i (P(same community | read_i) * P(read_i))
             for k in alleles.keys():
                 for j in alleles.keys():
                     if j > k:
                         if alleles[j]==alleles[k]:
-                            contact_map[k,j] = contact_map[k,j] + 10**(-(qscores[k]+qscores[j])/10.0)
+                            contact_map[k,j] = contact_map[k,j] + (1 - 10**(-(qscores[k])/10.0)) * (1 - 10**(-(qscores[j])/10.0))
                         else:
-                            contact_map[k,j] = contact_map[k,j] - 10**(-(qscores[k]+qscores[j])/10.0)
-
+                            contact_map[k,j] = contact_map[k,j] + (1 - (1 - 10**(-(qscores[k])/10.0)) * (1 - 10**(-(qscores[j])/10.0)))
+                        contact_map_cnt[k,j] = contact_map_cnt[k,j] + 1
+        # Transfer probability into 1 (same community) and -1 (different community)
+        cm_row, cm_col = contact_map_cnt.nonzero()
+        for idx in range(len(cm_row)):
+            if contact_map[cm_row[idx],cm_col[idx]]/contact_map_cnt[cm_row[idx],cm_col[idx]]>0.5:
+                contact_map[cm_row[idx],cm_col[idx]] = 1
+            elif contact_map[cm_row[idx],cm_col[idx]]/contact_map_cnt[cm_row[idx],cm_col[idx]] == 0.5:
+                contact_map[cm_row[idx],cm_col[idx]] = 0
+            else:
+                contact_map[cm_row[idx],cm_col[idx]] = -1
+        
 else:
     
+    # Parse contact map file
     with open(args.contactmap) as f:
         print ("Parsing contactmap file...")
         num_snp, verbose, num_links = (int(x) for x in f.readline().split())        
@@ -68,18 +89,29 @@ else:
         if num_snp != verbose:
             print("Contact map size error! # of Rows != # of Columns!")
             exit(0)
+        # Read in file
         for i,line in enumerate(f):
             fields = line.strip().split()
             if i == 0: continue     
             contact_map[int(fields[0])-1,int(fields[1])-1] = int(fields[2])
+        # Transfer probability into 1 (same community) and -1 (different community)
+        contact_map[contact_map>0]=1
+        contact_map[contact_map<0]=-1   
 
-contact_map[contact_map>0]=1
-contact_map[contact_map<0]=-1   
+##########                Preprocess Input               ####################
+#############################################################################
+
+
+
+
+# Make symmetric
 contact_map_t = contact_map.transpose(copy=True)
 contact_map = contact_map + contact_map_t
+
+# Find all connected components
 n_components, labels = connected_components(contact_map, directed=False, return_labels=True)
 phased_snp = np.zeros((num_snp,))
-print(len(phased_snp))
+
 out_file = open(args.outphase, "w")
 out_file.write("")
 out_file.close()
@@ -88,22 +120,31 @@ preprocess_time = time.clock()
 print("Preprocessing finished! Elapsed time = " + str(preprocess_time - start_time) + 's' )
 
 
-# phase each locally phaseable block in turn
+##########            Run Spectral-stitching             ####################
+#############################################################################
 
-idx_dic = np.array(range(num_snp))
 W = 100
+idx_dic = np.array(range(num_snp))
 sub_idx_idc = np.array(range(W))
-print ("Phasing " + str(n_components)+" blocks...")
+print ("Phasing " + str(n_components)+" blocks (include singleton SNP)...")
+# Iterate over all connected components (blocks)
 for i in range(n_components):
-    # Step1. Spectral
+
+# Step1. Spectral
+ 
+    # Extract position and elements of block i from contact map
     pos = idx_dic[labels==i]
     if len(pos) == 1: continue
     elements = contact_map[pos,:][:,pos]
+
+    # Seperate elements into chunk with size W*W
     chunk_n = int(np.ceil((len(pos)-W)/W*2))
+    # For chunk size <= 1, stitching is not needed
     if chunk_n <= 1:
         phased_snp[pos] = spectral(elements.toarray(), 2)
     else:
         chunk_snp={}
+        # Iterate over all chunks
         for j in range(chunk_n):
             ww1 = j*W/2
             if j == chunk_n - 1:
@@ -111,12 +152,12 @@ for i in range(n_components):
             else:
                 ww2 = j*W/2+W
             chunk = elements[ww1:ww2,:][:,ww1:ww2]
-            sub_n_components, sub_label = connected_components(chunk, directed=False, return_labels=True)
+            # Seperate each chunk into blocks again, we run spectral only on connected components in chunk
+            sub_n_components, sub_label = connected_components(chunk, directed=False, return_labels=True)            
             if sub_n_components>1:
                 for sub_i in range(sub_n_components):
                     sub_pos = sub_idx_idc[sub_label==sub_i]
                     sub_chunk = chunk[sub_pos,:][:,sub_pos]
-                    #print(sub_chunk.toarray())
                     phased_snp[pos[ww1:ww2][sub_pos]] = spectral(sub_chunk.toarray(), 2)
             else:
                 phased_snp[pos[ww1:ww2]] = spectral(chunk.toarray(), 2)
@@ -130,8 +171,10 @@ for i in range(n_components):
                 ww2 = len(pos)
             else:
                 ww2 = j*W/2+W
+            # Use the overlap region to determine flip or not
             if sum(chunk_snp[j-1][W/2:W] == chunk_snp[j][0:W/2]) < sum(chunk_snp[j-1][W/2:W] == -chunk_snp[j][0:W/2]):
                 chunk_snp[j] = - chunk_snp[j]
+            # For the overlap region, we determine the SNP by trusting the chunk with more reads included
             for k in range(W/2):
                 if chunk_snp[j-1][W/2+k] != chunk_snp[j][k]:
                     if elements[ww1+k,:][:,(ww1-W/2):(ww1+W/2)].nnz >  elements[ww1+k,:][:,ww1:ww2].nnz:
@@ -147,16 +190,21 @@ for i in range(n_components):
                 info = elements[tt,:][:,pp].toarray().flatten()
                 known_spec = phased_snp[pos[pp]].flatten()
                 met = int(sum(info*known_spec) > 0)
+                # Remain 0 if undetermined
                 if met > 0:
                     phased_snp[pos[tt]] = 1
                 elif met < 0:
                     phased_snp[pos[tt]] = -1
 
-print(len(phased_snp))
 
 spectral_time = time.clock()
 print("Spectral-Stitching algorithm finished! Elapsed time = " + str(spectral_time - preprocess_time) +'s' )
+
+##########                 Print Output                  ####################
+#############################################################################
+
 if args.noblock == True:
+    # Do not print out blocks
     with open(args.outphase, "w") as testout:
         for i, snp in enumerate(phased_snp):
             if i == len(phased_snp)-1:
@@ -167,9 +215,9 @@ if args.noblock == True:
                 testout.write("%d," % (int(snp/2+1.5)))
 
 else:
+    # Print in the form of blocks
     out_file = open(args.outphase, "a")
     for i in range(n_components):
-        # Step1. Spectral
         pos = idx_dic[labels==i]
         if len(pos) == 1: continue
         out_file.write("BLOCK: offset: %d len: %d\n" % (pos[0]+1, len(pos)))
