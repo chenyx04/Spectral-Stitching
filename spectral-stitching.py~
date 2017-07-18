@@ -126,7 +126,7 @@ print("Preprocessing finished! Elapsed time = " + str(preprocess_time - start_ti
 W = 100
 idx_dic = np.array(range(num_snp))
 sub_idx_idc = np.array(range(W))
-print ("Phasing " + str(n_components)+" blocks (including singleton SNP)...")
+print ("Phasing " + str(n_components)+" blocks (include singleton SNP)...")
 # Iterate over all connected components (blocks)
 for i in range(n_components):
 
