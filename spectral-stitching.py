@@ -181,20 +181,20 @@ for i in range(n_components):
                         chunk_snp[j][k] = chunk_snp[j-1][W/2+k]
             phased_snp[pos[ww1:ww2]] = chunk_snp[j] 
 
-        # Step3. Local refinment
+    # Step3. Local refinment
 
-        for refine_iter in range(3):
-            for tt, pos_tt in enumerate(pos):
-                pp = elements[tt,:].nonzero()[1]
-                pp = pp[abs(pp-tt)<(refine_iter+1)*W/2]
-                info = elements[tt,:][:,pp].toarray().flatten()
-                known_spec = phased_snp[pos[pp]].flatten()
-                met = int(sum(info*known_spec))
-                # Remain 0 if undetermined
-                if met > 0:
-                    phased_snp[pos[tt]] = 1
-                elif met < 0:
-                    phased_snp[pos[tt]] = -1
+    for refine_iter in range(3):
+        for tt, pos_tt in enumerate(pos):
+            pp = elements[tt,:].nonzero()[1]
+            pp = pp[abs(pp-tt)<(refine_iter+1)*W/2]
+            info = elements[tt,:][:,pp].toarray().flatten()
+            known_spec = phased_snp[pos[pp]].flatten()
+            met = int(sum(info*known_spec))
+            # Remain 0 if undetermined
+            if met > 0:
+                phased_snp[pos[tt]] = 1
+            elif met < 0:
+                phased_snp[pos[tt]] = -1
 
         ## Some immature thinking on long range switch error correction. Performance is not so good
         # for refine_iter in range(3):
