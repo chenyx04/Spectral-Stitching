@@ -40,7 +40,7 @@ If you want a whole continuous snp output instead of blocked one, try parameter 
 ### Input File Format 
 
 
-The refhap reads format is the same as described in the paper by Duitama et al. (2010) and the documentation of RefHap algorithm. A demo file is provided in `refhapreads_demo.txt`.
+The refhap reads format is the same as described in the paper by [Duitama et al. (2010)](http://dl.acm.org/citation.cfm?id=1854802) and the documentation of RefHap algorithm. A demo file is provided in `refhapreads_demo.txt`.
 
 The format of contact map file should be:
 
