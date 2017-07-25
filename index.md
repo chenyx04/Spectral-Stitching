@@ -21,7 +21,7 @@ The main program is implemented in Python. An evaluation program (implemented in
 The Spectral-Stitching algorithm is efficient especially when the coverage is relatively deep (at least > 5X). When the coverage is shallow, our algorithm degrades into the simple spectral algorithm. 
 
 
-If you have any question, please feel free to contact 
+If you have any questions, feel free to contact 
 
 [Banghua Zhu](mailto:13aeon.v01d@gmail.com), Tsinghua University   
 [Yuxin Chen](mailto:yuxin.chen@princeton.edu), Princeton University  
