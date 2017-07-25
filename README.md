@@ -51,7 +51,7 @@ If you want a whole continuous snp output instead of blocked one. Try parameter 
 ### Input File Format 
 
 
-Each sequenced read is mapped to the reference genomic sequence to obtain the alleles it has at each of the heterozygous sites. For a variant, reads with sequence matching the consensus sequence are assigned as 0, while those not matching are assigned as 1. In our algorithm, if a read indicates that two SNPs are all 0 or all 1, we call the two SNPs belong to the same community. Else we call them in the different community.
+Each sequenced read is mapped to the reference genomic sequence to obtain the alleles it has at each of the heterozygous sites. Here we represent the major allele by 0 and the minor allele by 1.
 
 The refhap reads format is the same as Refhap algorithm in Duitama et al. (2010) and Probhap in V. Kuleshov (2014). A demo file is provided in `refhapreads_demo.txt`. The format is as follows.
 
@@ -69,9 +69,11 @@ The format of contact map file should be:
 
 \# of rows (space) \# of columns (space) Number of linkages
 
-SNP pos x1 (space) SNP Index y1 (space) \# of reads that indicate x1 and y1 belong to one community (If one read indicates x1 and y1 are all 0 or all 1, then this adds 1, else this minuses 1)
+SNP pos x1 (space) SNP Index y1 (space) \# of reads that indicate x1 and y1 are both major alleles or both minor alleles (If one read indicates x1 and y1 are all 0 or all 1, then this adds 1, else this minuses 1. If the value is less than 0, it indicates that one of x1 and y1 is major allele, and another is minor allele.)
 
-SNP pos x2 (space) SNP Index y2 (space) \# of reads that indicate x2 and y2 belong to one community
+SNP pos x2 (space) SNP Index y2 (space) \# of reads that indicate x2 and y2 are both major alleles or both minor alleles
+
+...
 
 For example, if you have 4 reads, the first read indicates SNP1 and SNP2 are in the same community. The second read indicates SNP1 and SNP2 are in different community. The third read indicate SNP1 and SNP3 are in the same community. The fourth read indicates SNP1 and SNP2 are in different community. Then the contact map should be:
 
