@@ -7,20 +7,17 @@ permalink:        pretty
 # relative_permalinks: true
 
 # Setup
-title:            'HINGE'
-tagline:          'A genome assembler'
-description:      'A genome assembler attempting to assemble all that can be assembled but nothing more'
-url:              http://HingeAssembler.github.io
+title:            'Spectral Stitching'
+tagline:          'A haplotype phasing algorithm'
+url:              https://chenyx04.github.io
 baseurl:          /
 
 author:
-  name:           'The HINGE Team'
-  url:            http://HingeAssembler.github.io
+  name:           
+  url:            https://chenyx04.github.io
 
 paginate:         5
 
-# Custom vars
-version:          0.41
 
 
 collections:
@@ -29,6 +26,6 @@ collections:
 
 
 github:
-  repo:       'https://github.com/HingeAssembler/HINGE'
+  repo:       'https://github.com/chenyx04/Spectral-Stitching'
 
 theme: jekyll-theme-dinky
