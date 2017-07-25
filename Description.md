@@ -4,13 +4,6 @@ mathjax: true
 title: Home
 ---
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
-        SVG: { linebreaks: { automatic:true } },
-        displayAlign: "center" });
-</script>
-
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
 [Description](https://chenyx04.github.io/Spectral-Stitching/Description)  
 [Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
@@ -22,7 +15,7 @@ Humans have 23 pairs of homologous chromosomes, which are identical except on ce
 
 The Spectral-Stitching algorithm consists of three stages:
 
-**Stage 1: node splitting and spectral estimation.**  Split all nodes into several overlapping subsets $$a$$
+**Stage 1: node splitting and spectral estimation.**  Split all nodes into several overlapping subsets 
 
 
 
