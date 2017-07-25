@@ -14,7 +14,7 @@ title: Home
 
 <br>
 
-This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
+This repository implements the Spectral-Stitching algorithm for [haplotype phasing](Description.md) proposed in:
 
 * Yuxin Chen, Govinda Kamath, Changho Suh, and David Tse,  "[Community recovery in graphs with locality](http://proceedings.mlr.press/v48/chena16.html)," *International Conference on Machine Learning*, pp. 689-698, June 2016.
   * [Paper (ICML)](http://www.princeton.edu/~yc5/publications/Locality_ICML.pdf)
