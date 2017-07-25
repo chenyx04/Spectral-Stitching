@@ -9,7 +9,7 @@ title: Home
 # Spectral-Stitching Algorithm for Haplotype Phasing
 
 
-![Image of Spectral Stitching](https://github.com/chenyx04/Spectral-Stitching/blob/gh-pages/spectral_stitch_stage12.png)
+![Image of Spectral Stitching](spectral_stitch_stage12.png)
 
 
 This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
