@@ -14,8 +14,15 @@ Humans have 23 pairs of homologous chromosomes, which are identical except on ce
 
 The Spectral-Stitching algorithm consists of three stages:
 
-**Stage 1: node splitting and spectral estimation.**  Split all nodes into several overlapping subsets 
+**Stage 1: node splitting and spectral estimation.**  Split all nodes into several *overlapping* subsets, and run spectral
+methods separately on each subgraph induced by each vertex subset, in the hope of achieving approximate estimates for each subgraph. 
 
+**Stage 2: stiching the estimates.**  The aim of this stage is to stitch together the outputs of Stage 1
+computed in isolation for the collection of overlapping subgraphs, so as to ensure that they have matching global phases. 
+
+**Stage 3: successive local refinement.**  Clean up all estimates using both backward and
+forward samples in order to maximize recovery accuracy. This is achieved by running local majority
+voting from the neighbors of each vertex until convergence. 
 
 
 
