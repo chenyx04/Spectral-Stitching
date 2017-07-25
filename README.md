@@ -51,7 +51,19 @@ If you want a whole continuous snp output instead of blocked one. Try parameter 
 ### Input File Format 
 
 
-The refhap reads format is the same as described in the paper by Duitama et al. (2010) and the documentation of RefHap algorithm. A demo file is provided in `refhapreads_demo.txt`.
+Each sequenced read is mapped to the reference genomic sequence to obtain the alleles it has at each of the heterozygous sites. For a variant, reads with sequence matching the consensus sequence are assigned as 0, while those not matching are assigned as 1. In our algorithm, if a read indicates that two SNPs are all 0 or all 1, we call the two SNPs belong to the same community. Else we call them in the different community.
+
+The refhap reads format is the same as Refhap algorithm in Duitama et al. (2010) and Probhap in V. Kuleshov (2014). A demo file is provided in `refhapreads_demo.txt`. The format is as follows.
+
+\# of reads (space) \# of SNPs
+
+\# of SNP contigs covered by read 1 (space) read name (space) start point of first SNP contig (space) alleles in the first SNP contig (space) start point of second SNP contig (space) alleles in the second SNP contig ...
+
+\# of SNP contigs covered by read 2 (space) read name (space) start point of first SNP contig (space) alleles in the first SNP contig (space) start point of second SNP contig (space) alleles in the second SNP contig ...
+
+...
+
+
 
 The format of contact map file should be:
 
