@@ -3,5 +3,4 @@ description: A community-recovery approach for haplotype phasing
 show_downloads: false
 google_analytics:
 github.is_project_page: false
-markdown: maruku
 theme: jekyll-theme-slate
