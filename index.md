@@ -1,3 +1,6 @@
+---
+title: 'Spectral stitching'
+---
 
 # Spectral-Stitching for Haplotype Phasing
 
