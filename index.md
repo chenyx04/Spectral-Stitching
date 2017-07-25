@@ -9,6 +9,9 @@ title: Home
 # Spectral-Stitching Algorithm for Haplotype Phasing
 
 
+![Image of Spectral Stitching](https://github.com/chenyx04/Spectral-Stitching/blob/gh-pages/spectral_stitch_stage12.png)
+
+
 This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
 
 * Yuxin Chen, Govinda Kamath, Changho Suh, and David Tse,  "[Community recovery in graphs with locality](http://proceedings.mlr.press/v48/chena16.html)," *International Conference on Machine Learning*, pp. 689-698, June 2016.
@@ -19,7 +22,6 @@ This repository implements the Spectral-Stitching algorithm for haplotype phasin
 
 
 
-![Image of Spectral Stitching](https://github.com/chenyx04/Spectral-Stitching/blob/gh-pages/spectral_stitch_stage12.png)
 
 
 
