@@ -17,6 +17,9 @@ This repository implements the Spectral-Stitching algorithm for haplotype phasin
   * [Slides](http://www.princeton.edu/~yc5/slides/Locality_ICML_slides.pdf)  
   * [Github Repo](https://github.com/chenyx04/Spectral-Stitching)
 
+![Image of Spectral Stitching](https://github.com/chenyx04/Spectral-Stitching/blob/gh-pages/spectral_stitch_stage12.png)
+
+
 The design of the Spectral-Stitching algorithm leverages connections between haplotype phasing and the problem of **_community detection_**, where communities have to be inferred based on the friendship graph of users. The algorithm is shown to be efficient especially when the coverage is relatively deep (at least > 5X). 
 
 The main program is implemented in Python. An evaluation program (implemented in MATLAB and R) is also provided for evaluating on NA12878 WGS data in the [10X paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4786454/).
