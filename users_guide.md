@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Users
+title: Users' guide
 ---
 
 
