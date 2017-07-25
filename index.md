@@ -9,10 +9,9 @@ We provide a python main program, along with an evaluation version program in MA
 Our algorithm is efficient and powerful especially when coverage is relatively deep (at least > 5X). When the coverage is shallow, our algorithm degrades into simple spectral algorithm. 
 
 
-Our main program only depends on numpy (http://www.numpy.org/) and scipy (https://www.scipy.org/) package in python. It accepts two formats of input and output in two formats.
+The main program uses [NumPy](http://www.numpy.org/) and [SciPy](https://www.scipy.org/) packages, and accepts input and output in two formats.
 
-
-The evaluation code requires CVX package in matlab (http://cvxr.com/cvx/) and foreach & doParallel package in R. 
+The evaluation code requires [CVX](http://cvxr.com/cvx/) in matlab  as well as foreach & doParallel package in R. 
 
 
 If you have any question, please feel free to contact 
