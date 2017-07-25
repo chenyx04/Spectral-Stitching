@@ -7,7 +7,7 @@ This repository implements the Spectral-Stitching algorithm for haplotype phasin
   * [Paper (Arxiv)](https://arxiv.org/abs/1602.03828)
   * [Slides](http://www.princeton.edu/~yc5/slides/Locality_ICML_slides.pdf)  
 
-We provide a python main program, along with an evaluation program in MATLAB and R for running and evaluating on NA12878 WGS data in 10X paper.
+The main program is implemented in Python. An evaluation program in MATLAB and R is also provided for running and evaluating on NA12878 WGS data in 10X paper.
 
 Our algorithm is efficient and powerful especially when coverage is relatively deep (at least > 5X). When the coverage is shallow, our algorithm degrades into the simple spectral algorithm. 
 
