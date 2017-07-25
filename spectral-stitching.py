@@ -16,6 +16,8 @@ group.add_argument('-r','--reads', help='path to reads file, this is mutually ex
 group.add_argument('-c','--contactmap', help='path to contact map, this is mutually exclusive with reads file')
 parser.add_argument('-o','--outphase', help='output file path', required=True)
 parser.add_argument('-nb','--noblock', help='simply output all snps instead of blocks', action='store_true')
+parser.add_argument('-ns','--noqscore', help='indicate the refhap reads file does not contain read quality score', action='store_true')
+
 args = parser.parse_args()
 
 
@@ -44,15 +46,18 @@ if args.reads is not None:
             num_pieces = int(fields[0])
 
             # Iterate over contiguous SNP groups in a single read
-            for k in xrange(num_pieces):
+            for k in range(num_pieces):
                 start = int(fields[2+2*k])-1
                 allele_list = fields[2+2*k+1]
 
                 # Iterate over each SNP in a contiguous SNP grouop
-                for j, allele in zip(xrange(start,start+len(allele_list)), allele_list):
+                for j, allele in zip(range(start,start+len(allele_list)), allele_list):
                     alleles[j] = [int(allele)]
-                    x = qscore_list.pop()
-                    qscores[j] = float(ord(x)-33)
+                    if args.noqscore == False:
+                        x = qscore_list.pop()
+                        qscores[j] = float(ord(x)-33)
+                    else:
+                        qscores[j] = 40
                     covered_positions.append(j)
 
             # Ignore reads that only cover a single SNP
@@ -105,7 +110,7 @@ else:
 
 
 # Make symmetric
-contact_map_t = contact_map.transpose(copy=True)
+contact_map_t = contact_map.transpose()
 contact_map = contact_map + contact_map_t
 
 # Find all connected components
@@ -146,11 +151,11 @@ for i in range(n_components):
         chunk_snp={}
         # Iterate over all chunks
         for j in range(chunk_n):
-            ww1 = j*W/2
+            ww1 = int(j*W/2)
             if j == chunk_n - 1:
-                ww2 = len(pos)
+                ww2 = int(len(pos))
             else:
-                ww2 = j*W/2+W
+                ww2 = int(j*W/2+W)
             chunk = elements[ww1:ww2,:][:,ww1:ww2]
             # Seperate each chunk into blocks again, we run spectral only on connected components in chunk
             sub_n_components, sub_label = connected_components(chunk, directed=False, return_labels=True)            
@@ -166,19 +171,19 @@ for i in range(n_components):
         # Step2. Stitching
 
         for j in range(1, chunk_n):
-            ww1 = j*W/2
+            ww1 = int(j*W/2)
             if j == chunk_n - 1:
-                ww2 = len(pos)
+                ww2 = int(len(pos))
             else:
-                ww2 = j*W/2+W
+                ww2 = int(j*W/2+W)
             # Use the overlap region to determine flip or not
-            if sum(chunk_snp[j-1][W/2:W] == chunk_snp[j][0:W/2]) < sum(chunk_snp[j-1][W/2:W] == -chunk_snp[j][0:W/2]):
+            if sum(chunk_snp[j-1][int(W/2):W] == chunk_snp[j][0:int(W/2)]) < sum(chunk_snp[j-1][int(W/2):W] == -chunk_snp[j][0:int(W/2)]):
                 chunk_snp[j] = - chunk_snp[j]
             # For the overlap region, we determine the SNP by trusting the chunk with more reads included
-            for k in range(W/2):
-                if chunk_snp[j-1][W/2+k] != chunk_snp[j][k]:
-                    if elements[ww1+k,:][:,(ww1-W/2):(ww1+W/2)].nnz >  elements[ww1+k,:][:,ww1:ww2].nnz:
-                        chunk_snp[j][k] = chunk_snp[j-1][W/2+k]
+            for k in range(int(W/2)):
+                if chunk_snp[j-1][int(W/2+k)] != chunk_snp[j][k]:
+                    if elements[ww1+k,:][:,int(ww1-W/2):int(ww1+W/2)].nnz >  elements[ww1+k,:][:,ww1:ww2].nnz:
+                        chunk_snp[j][k] = chunk_snp[j-1][int(W/2+k)]
             phased_snp[pos[ww1:ww2]] = chunk_snp[j] 
 
     # Step3. Local refinment
