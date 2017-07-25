@@ -16,8 +16,8 @@ The main program uses [NumPy](http://www.numpy.org/) and [SciPy](https://www.sci
 
 If you have any question, please feel free to contact 
 
-[Banghua Zhu](mailto:13aeon.v01d@gmail.com), Tsinghua University 
-[Yuxin Chen](mailto:yuxin.chen@princeton.edu), Princeton University
+[Banghua Zhu](mailto:13aeon.v01d@gmail.com), Tsinghua University   
+[Yuxin Chen](mailto:yuxin.chen@princeton.edu), Princeton University  
 [David Tse](mailto:dntse@stanford.edu), Stanford University
 
 
