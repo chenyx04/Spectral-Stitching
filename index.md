@@ -8,11 +8,11 @@ title: Home
 
 # Spectral-Stitching Algorithm for Haplotype Phasing
 
-  <br><br>
+<br>
   
 ![Image of Spectral Stitching](spectral_stitch_stage12.png)
 
-<br><br>
+<br>
 
 This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
 
