@@ -1,6 +1,6 @@
 ---
-layout: default
-title: About
+layout: page
+title: Home
 ---
 
 # Spectral-Stitching for Haplotype Phasing
