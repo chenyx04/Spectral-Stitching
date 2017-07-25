@@ -4,6 +4,7 @@ title: Home
 ---
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
 [Description](https://chenyx04.github.io/Spectral-Stitching/Description)  
+[Algorithm](https://chenyx04.github.io/Spectral-Stitching/Algorithm)  
 [Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
 
 # Spectral-Stitching Algorithm for Haplotype Phasing
