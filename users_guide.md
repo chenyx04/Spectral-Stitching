@@ -4,6 +4,7 @@ title: Users' guide
 ---
 
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
+[Description](https://chenyx04.github.io/Spectral-Stitching/Description)  
 [Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
 
 
