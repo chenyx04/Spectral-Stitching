@@ -20,8 +20,6 @@ The main program is implemented in Python. An evaluation program (implemented in
 
 The Spectral-Stitching algorithm is efficient especially when the coverage is relatively deep (at least > 5X). When the coverage is shallow, our algorithm degrades into the simple spectral algorithm. 
 
-The main program uses [NumPy](http://www.numpy.org/) and [SciPy](https://www.scipy.org/) packages, and supports two types of input / output data formats. The evaluation code requires [CVX](http://cvxr.com/cvx/) in MATLAB as well as foreach & doParallel package in R. 
-
 
 If you have any question, please feel free to contact 
 
