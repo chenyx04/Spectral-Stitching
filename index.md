@@ -19,7 +19,7 @@ This repository implements the Spectral-Stitching algorithm for haplotype phasin
 * Yuxin Chen, Govinda Kamath, Changho Suh, and David Tse,  "[Community recovery in graphs with locality](http://proceedings.mlr.press/v48/chena16.html)," *International Conference on Machine Learning*, pp. 689-698, June 2016.
   * [Paper (ICML)](http://www.princeton.edu/~yc5/publications/Locality_ICML.pdf)
   * [Paper (Arxiv)](https://arxiv.org/abs/1602.03828)
-  * [Slides (Computational Genomics Summer Institute)](http://www.princeton.edu/~yc5/slides/gsi_talk_np.pptx) 
+  * [Slides (Computational Genomics Summer Institute)](http://www.princeton.edu/~yc5/slides/cgsi_talk_np.pptx) 
   * [Slides (International Conference on Machine Learning)](http://www.princeton.edu/~yc5/slides/Locality_ICML_slides.pdf)  
   * [Github Repo](https://github.com/chenyx04/Spectral-Stitching)
 
