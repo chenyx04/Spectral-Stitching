@@ -1,2 +1,4 @@
 theme: jekyll-theme-dinky
 title: Spectral Stitching
+tagline:          'A haplotype phasing algorithm'
+url:              https://chenyx04.github.io/Spectral-Stitching/
