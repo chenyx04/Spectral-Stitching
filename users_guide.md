@@ -35,6 +35,7 @@ python spectral-stitching.py -c contactmap_demo.csv  -o out.phased
 
 If you want a whole continuous snp output instead of blocked one, try parameter -nb.
 
+If no quality score is included or you don't want the quality score to be taken into consideration, use parameter -ns.
 
 
 ### Input File Format 
