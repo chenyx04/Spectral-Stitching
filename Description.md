@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 mathjax: true
 title: Home
 ---
