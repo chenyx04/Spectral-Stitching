@@ -1,7 +1,3 @@
----
-layout: default
-title: user guide
----
 
 ## Usage of Python Main Program
 
