@@ -21,9 +21,9 @@ This repository implements the Spectral-Stitching algorithm for haplotype phasin
 
 
 <br>
-  
+<p align="center">  
 ![Image of Spectral Stitching](spectral_stitch_stage12.png)
-
+</p>
 <br>
 
 
