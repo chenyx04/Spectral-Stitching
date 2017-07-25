@@ -5,7 +5,7 @@ title: Home
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
 [Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
 
-# The *Spectral-Stitching* Algorithm for Haplotype Phasing
+# Spectral-Stitching Algorithm for Haplotype Phasing
 
 
 This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
