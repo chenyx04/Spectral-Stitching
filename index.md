@@ -1,9 +1,8 @@
-# Spectral-stitching for Haplotype Phasing
+# Spectral-Stitching for Haplotype Phasing
 
-Test: Spectral-stitching algorithm for solving haplotype phasing problem. It implements the algorithm proposed in:
+This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
 
-
-Chen, Y., Kamath, G., Suh, C., & Tse, D. (2016, June). Community recovery in graphs with locality. In International Conference on Machine Learning (pp. 689-698).
+Yuxin Chen, Govinda Kamath, Changho Suh, and David Tse,  "[Community recovery in graphs with locality](http://www.princeton.edu/~yc5/publications/Locality_ICML.pdf)," International Conference on Machine Learning, pp. 689-698, June 2016.
 
 We provide a python main program, along with an evaluation version program in MATLAB and R for running and evaluating on NA12878 WGS data in 10X paper.
 
