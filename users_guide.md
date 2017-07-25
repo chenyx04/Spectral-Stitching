@@ -106,3 +106,5 @@ phased_seq = Spectral_stitching(`contactmap_demo.csv`);
 ```
 
 to get the phased sequence.
+
+For all the ground truth file for 10X NA12878 WGS data, please go to https://drive.google.com/open?id=0B583FJ-HAtQoY2JFczJhOHlVUnM
