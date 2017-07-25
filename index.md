@@ -1,3 +1,8 @@
+---
+layout: page
+title: 'Spectral-Stitching algorithm'
+---
+
 # Spectral-Stitching for Haplotype Phasing
 
 This repository implements the Spectral-Stitching algorithm for haplotype phasing proposed in:
