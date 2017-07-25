@@ -40,17 +40,31 @@ If you want a whole continuous snp output instead of blocked one, try parameter 
 ### Input File Format 
 
 
-The refhap reads format is the same as described in the paper by [Duitama et al. (2010)](http://dl.acm.org/citation.cfm?id=1854802) and the documentation of RefHap algorithm. A demo file is provided in `refhapreads_demo.txt`.
+Each sequenced read is mapped to the reference genomic sequence to obtain the alleles it has at each of the heterozygous sites. Here we represent the major allele by 0 and the minor allele by 1.
+
+The refhap reads format is the same as Refhap algorithm in [Duitama et al. (2010)](http://dl.acm.org/citation.cfm?id=1854802) and Probhap in [V. Kuleshov (2014)](https://www.ncbi.nlm.nih.gov/pubmed/25161223). A demo file is provided in `refhapreads_demo.txt`. The format is as follows.
+
+\# of reads (space) \# of SNPs
+
+\# of SNP contigs covered by read 1 (space) read name (space) start point of first SNP contig (space) alleles in the first SNP contig (space) start point of second SNP contig (space) alleles in the second SNP contig ...
+
+\# of SNP contigs covered by read 2 (space) read name (space) start point of first SNP contig (space) alleles in the first SNP contig (space) start point of second SNP contig (space) alleles in the second SNP contig ...
+
+...
+
+
 
 The format of contact map file should be:
 
 \# of rows (space) \# of columns (space) Number of linkages
 
-SNP pos x1 (space) SNP Index y1 (space) \# of reads that indicate x1 and y1 belong to one community (If one read indicates x1 and y1 are all 0 or all 1, then this adds 1, else this minuses 1)
+SNP pos x1 (space) SNP Index y1 (space) \# of reads that indicate x1 and y1 are both major alleles or both minor alleles (If one read indicates x1 and y1 are all 0 or all 1, then this adds 1, else this minuses 1. If the value is less than 0, it indicates that one of x1 and y1 is major allele, and another is minor allele.)
 
-SNP pos x2 (space) SNP Index y2 (space) \# of reads that indicate x2 and y2 belong to one community
+SNP pos x2 (space) SNP Index y2 (space) \# of reads that indicate x2 and y2 are both major alleles or both minor alleles
 
-For example, if one has the following four reads: the first read indicates SNP1 and SNP2 are in the same community, the second read indicates SNP1 and SNP2 are in different communities, the third read indicate SNP1 and SNP3 are in the same community, and the fourth read indicates SNP1 and SNP2 belong to different communities. Then the contact map should be:
+...
+
+For example, if you have 4 reads, the first read indicates SNP1 and SNP2 are in the same community. The second read indicates SNP1 and SNP2 are in different community. The third read indicate SNP1 and SNP3 are in the same community. The fourth read indicates SNP1 and SNP2 are in different community. Then the contact map should be:
 
 3 3 3
 
@@ -59,6 +73,7 @@ For example, if one has the following four reads: the first read indicates SNP1 
 1 3 1      (The third read +1.)
 
 A demo contactmap file is provided in `contactmap_demo.txt`.
+
 
 
 ### Output File Format
