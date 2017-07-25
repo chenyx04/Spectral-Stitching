@@ -10,7 +10,7 @@ def spectral(We, Q):
     I = sorted(range(len(eigenv)), key=lambda k: eigenv[k], reverse=True)
     V1 = V[:,I]
     evec = V1[:,0:(Q-1)].flatten()
-    idxt = np.ones((n,1))
+    idxt = np.ones((n,))
     idxt[evec<0] = -1
     idxt[evec==0] = 0
     return idxt
