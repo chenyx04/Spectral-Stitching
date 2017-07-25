@@ -19,8 +19,8 @@ The evaluation code requires CVX package in matlab (http://cvxr.com/cvx/) and fo
 If you have any question, please feel free to contact 
 
 Banghua Zhu (13aeon.v01d@gmail.com)
-
 Yuxin Chen (yuxin.chen@princeton.edu)
+David Tse (dntse@stanford.edu)
 
 
 ## Usage of Python Main Program
