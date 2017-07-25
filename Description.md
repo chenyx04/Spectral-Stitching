@@ -37,7 +37,9 @@ forward samples in order to maximize recovery accuracy. This is achieved by runn
 voting from the neighbors of each vertex until convergence. 
 
 <br>
+
 ![Image of Spectral Stitching3](Stage3.png)
+
 <br>
 
 
