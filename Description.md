@@ -42,6 +42,10 @@ voting from the neighbors of each vertex until convergence.
 
 <br>
 
+Details can be found in the following paper:
+
+* Yuxin Chen, Govinda Kamath, Changho Suh, and David Tse,  "[Community recovery in graphs with locality](http://proceedings.mlr.press/v48/chena16.html)," *International Conference on Machine Learning*, pp. 689-698, June 2016.
+
 
 
 
