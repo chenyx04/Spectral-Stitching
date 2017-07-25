@@ -18,39 +18,15 @@ disp(['Cov = ' num2str(cov)])
 phase = importfile(['data/groundtruth/chr' num2str(chrnum) '_ground_truth.txt']);
 
 
-% true ground truth file - consists of 1's and 2's
-%ground_truth = zeros(1,length(phase));
-%ground_truth(strcmp(phase,'0|1')) = 1;
-%ground_truth(strcmp(phase,'1|0')) = 2;
-%ground_truth(strcmp(phase,'0|2')) = 1;
-%ground_truth(strcmp(phase,'2|0')) = 2;
-% homozygous (multiple alternative alleles) - remove?
-%ii1 = find(strcmp(phase,'1|2') == 1);
-%ii2 = find(strcmp(phase,'2|1') == 1);
-%ground_truth([ii1;ii2]) = [];   % 32778 
 ground_truth = phase';
-%length(ground_truth)
 
 
 
 
 % adjacency matrix
-%cd ../new_files/
-data = load(['adjacent/chr' num2str(chrnum) 'adj_updated_cov' num2str(cov) '.csv'],'-ascii');
-%cd ..
+data = load(['data/adjacent/chr' num2str(chrnum) 'adj_updated_cov' num2str(cov) '.csv'],'-ascii');
 
 
-% index = []; ind = [];
-% num = 1; num1 = 1;
-% for i = 1:length(data)
-%     if (abs(data(i,1)-data(i,2)) > 1500)
-%         index(num) = i;
-%         num = num+1;
-%     end
-% end
-% data(index,:) = [];   % remove weird read that is far apart
-
-%adj_num = length(data);
 dat = spconvert(data); 
 
 dat(end,end) = 0;   % only one with nonzero diagonal
@@ -66,33 +42,12 @@ dat = dat+dat';
 %size(dat)   % 32778*32778
 
 
-% subsample the edges, needs to be symmetric
-%cd groundtruth/index_files
-
-%index = csvread('index_3.csv');
-%new_dat = dat(index,index);
-%data_sub = triu(dat,1);
-
-%pp = find(data_sub~=0);
-%pp1 = downsample(pp,5);   % subsampling ratio
-%data_sub(setdiff(pp,pp1)) = 0;
-
-%dat = data_sub+data_sub';
-%size(dat)
-
-% truncate ground truth file also
-% ground_truth = ground_truth(index);
-% length(ground_truth)
-
-%cd ../../
 
 
 %% construct moving & overlapping window for spectral analysis / SDP
 
-W = 120;  % neighborhood size
-%W = W - mod(W,4) + 2; 
-%disp(['W = ' num2str(W)])
-chunk_n = ceil((size(dat,2)-W)/(W/2));   % 655
+W = 120;  
+chunk_n = ceil((size(dat,2)-W)/(W/2)); 
 mm = rem(size(dat,2)-W,W/2);  % number in last chunk  % 11
 spec_res = zeros(chunk_n-1,W); 
 err_rate = zeros(1,chunk_n); %err_rate_m = err_rate;
@@ -187,19 +142,6 @@ else
 end
 
 
-
-
-% check accuracy against ground truth - misclassification error
-
-% nominal error
-%accu_spec = sum(res_spec == ground_truth)/length(ground_truth)   %86  94
-%accu_sdp = sum(res_sdp == ground_truth)/length(ground_truth)   %96  98
-
-
-% switch error - better measure
-% the proportion of SNPs whose phase is wrongly inferred relative to the
-% previous SNP
-
 % spectral method
 tmp = zeros(1,length(res_spec)-1);
 temp = zeros(1,length(res_spec)-1);
@@ -224,7 +166,7 @@ disp(['spec switch err: ' num2str(switch_err_spec)])
 
 %disp('stitching done')
 
-%%local correction step - Maximum Likelihood
+%%local correction step - Majority voting instead of Maximum Likelihood
 
 
 %% initialize
@@ -260,12 +202,6 @@ end
 
 % update the result variable    
 res_spec = res_spec_l;
-
-    
-
-% check accuracy - nominal error
-%accu_spec = sum(res_spec == ground_truth)/length(ground_truth)  % 99
-
 
 % switch error - better measure
 
