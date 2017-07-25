@@ -9,7 +9,7 @@ This repository implements the Spectral-Stitching algorithm for haplotype phasin
 
 The main program is implemented in Python. An evaluation program in MATLAB and R is also provided for running and evaluating on NA12878 WGS data in 10X paper.
 
-Our algorithm is efficient and powerful especially when coverage is relatively deep (at least > 5X). When the coverage is shallow, our algorithm degrades into the simple spectral algorithm. 
+The Spectral-Stitching algorithm is efficient especially when the coverage is relatively deep (at least > 5X). When the coverage is shallow, our algorithm degrades into the simple spectral algorithm. 
 
 The main program uses [NumPy](http://www.numpy.org/) and [SciPy](https://www.scipy.org/) packages, and accepts input and output in two formats. The evaluation code requires [CVX](http://cvxr.com/cvx/) in MATLAB as well as foreach & doParallel package in R. 
 
