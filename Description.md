@@ -1,7 +1,6 @@
 ---
 layout: default
-mathjax: true
-title: Home
+title: Description
 ---
 
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
