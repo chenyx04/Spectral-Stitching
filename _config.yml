@@ -2,4 +2,5 @@ title: Spectral Stitching
 description: A haplotype phasing algorithm
 show_downloads: false
 google_analytics:
+github.is_project_page: false
 theme: jekyll-theme-dinky
