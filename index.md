@@ -2,7 +2,8 @@
 layout: default
 title: Home
 ---
-[Home](https://chenyx04.github.io/Spectral-Stitching/)  [Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
+[Home](https://chenyx04.github.io/Spectral-Stitching/)  
+[Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
 
 # Spectral-Stitching for Haplotype Phasing
 
