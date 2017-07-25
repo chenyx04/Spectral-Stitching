@@ -1,6 +1,3 @@
----
-title: 'User guide'
----
 
 ## Usage of Python Main Program
 
