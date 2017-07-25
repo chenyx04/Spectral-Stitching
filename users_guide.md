@@ -102,7 +102,7 @@ Finally, run `measure_performance_across_subsamples.R` to get the metrics switch
 If you have an adjacency matrix (or contact map) in the same format as `contactmap_demo.csv`, you can run in MATLAB
 
 ```
-phased_seq = Spectral_stitching(`contactmap_demo.csv`);
+phased_seq = Spectral_stitching(`contactmap_demo.csv`, 'out.txt');
 ```
 
 to get the phased sequence.
