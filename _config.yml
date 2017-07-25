@@ -1,4 +1,32 @@
-theme: jekyll-theme-dinky
-title: Spectral Stitching
-tagline:          'A haplotype phasing algorithm'
-url:              https://chenyx04.github.io/Spectral-Stitching/
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Permalinks
+permalink:        pretty
+# relative_permalinks: true
+
+# Setup
+title:            'HINGE'
+tagline:          'A genome assembler'
+description:      'A genome assembler attempting to assemble all that can be assembled but nothing more'
+url:              http://HingeAssembler.github.io
+baseurl:          /
+
+author:
+  name:           'The HINGE Team'
+  url:            http://HingeAssembler.github.io
+
+paginate:         5
+
+# Custom vars
+version:          0.41
+
+
+collections:
+  people:
+    output: true
+
+
+github:
+  repo:       'https://github.com/HingeAssembler/HINGE'
