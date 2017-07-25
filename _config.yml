@@ -30,3 +30,5 @@ collections:
 
 github:
   repo:       'https://github.com/HingeAssembler/HINGE'
+
+theme: jekyll-theme-dinky
