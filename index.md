@@ -16,9 +16,9 @@ The main program uses [NumPy](http://www.numpy.org/) and [SciPy](https://www.sci
 
 If you have any question, please feel free to contact 
 
-Banghua Zhu (13aeon.v01d@gmail.com)  
-Yuxin Chen (yuxin.chen@princeton.edu)  
-David Tse (dntse@stanford.edu)
+[Banghua Zhu](mailto:13aeon.v01d@gmail.com)  
+[Yuxin Chen](mailto:yuxin.chen@princeton.edu)  
+[David Tse](mailto:dntse@stanford.edu)
 
 
 ## Usage of Python Main Program
