@@ -3,6 +3,7 @@ layout: default
 title: Users' guide
 ---
 
+[Home](https://chenyx04.github.io/Spectral-Stitching/)
 
 ## Usage of Python Main Program
 
