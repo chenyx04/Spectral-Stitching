@@ -1,17 +1,8 @@
-title:               Hello Lanyon
-tagline:             'A haplotype phasing algorithm'
-url:                 http://lanyon.getpoole.com
+title: Dinky theme
+description: Dinky is a red hot theme for GitHub Pages.
+show_downloads: true
+google_analytics:
+theme: 
 
-baseurl:             ''
-paginate:            5
 
-# About/contact
-author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
-
-# Custom vars
-version:             1.0.0
-
-theme: jekyll-theme-dinky
+# theme: jekyll-theme-dinky
