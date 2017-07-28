@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Home
 ---
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
