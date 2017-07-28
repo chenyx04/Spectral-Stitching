@@ -1,0 +1,24 @@
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="{{ site.baseurl }}">
+          {{ site.title }}
+        </a>
+      </h1>
+      <p class="lead">{{ site.description }}</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+
+      <a class="sidebar-nav-item" href="https://chenyx04.github.io/Spectral-Stitching/Description">Description</a>
+      <a class="sidebar-nav-item" href="https://chenyx04.github.io/Spectral-Stitching/Algorithm">Algorithm</a>
+
+      <a class="sidebar-nav-item" href="https://chenyx04.github.io/Spectral-Stitching/users_guide">Quick Start</a>
+      <a class="sidebar-nav-item" href="https://github.com/chenyx04/Spectral-Stitching">GitHub project</a>
+    </nav>
+
+    <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
+  </div>
+</div>
