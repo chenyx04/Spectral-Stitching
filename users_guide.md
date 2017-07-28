@@ -2,7 +2,6 @@
 layout: default
 title: Users' guide
 ---
-
 [Home](https://chenyx04.github.io/Spectral-Stitching/)  
 [Description](https://chenyx04.github.io/Spectral-Stitching/Description)  
 [Algorithm](https://chenyx04.github.io/Spectral-Stitching/Algorithm)  
