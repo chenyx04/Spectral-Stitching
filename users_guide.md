@@ -2,12 +2,6 @@
 layout: default
 title: Users' guide
 ---
-[Home](https://chenyx04.github.io/Spectral-Stitching/)  
-[Description](https://chenyx04.github.io/Spectral-Stitching/Description)  
-[Algorithm](https://chenyx04.github.io/Spectral-Stitching/Algorithm)  
-[Quick Start](https://chenyx04.github.io/Spectral-Stitching/users_guide)
-
-
 ## Dependencies
 The main program uses [NumPy](http://www.numpy.org/) and [SciPy](https://www.scipy.org/) packages, and supports two types of input / output data formats. The evaluation code requires [CVX](http://cvxr.com/cvx/) in MATLAB as well as foreach & doParallel package in R. 
 

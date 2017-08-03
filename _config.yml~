@@ -1,0 +1,9 @@
+title: Spectral Stitching
+description: A community-recovery approach for haplotype phasing
+show_downloads: false
+google_analytics:
+github.is_project_page: false
+markdown: kramdown
+theme: jekyll-theme-slate
+url: https://chenyx04.github.io/Spectral-Stitching/
+baseurl: /
