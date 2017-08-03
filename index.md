@@ -2,8 +2,6 @@
 layout: default
 title: Home
 ---
-
-
 # Spectral-Stitching Algorithm for Haplotype Phasing
 
 <br>
